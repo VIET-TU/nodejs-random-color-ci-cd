@@ -9,14 +9,14 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'docker build -t nodejs-random-color:ver-${BUILD_ID} .'
+                sh 'docker build -t nodejs-random-color:latest .'
             }
         }
         stage('Upload image to ECR') {
             steps {
-                sh 'aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 430950558682.dkr.ecr.ap-southeast-1.amazonaws.com'
-                sh 'docker tag nodejs-random-color:ver-${BUILD_ID} 430950558682.dkr.ecr.ap-southeast-1.amazonaws.com/nodejs-random-color:ver-${BUILD_ID}'
-                sh 'docker push 430950558682.dkr.ecr.ap-southeast-1.amazonaws.com/nodejs-random-color:ver-${BUILD_ID}'
+                sh 'aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 287925497349.dkr.ecr.ap-southeast-2.amazonaws.com'
+                sh 'docker tag nodejs-random-color:latest 287925497349.dkr.ecr.ap-southeast-2.amazonaws.com/nodejs-random-color:latest'
+                sh 'docker push 287925497349.dkr.ecr.ap-southeast-2.amazonaws.com/nodejs-random-color:latest'
             }
         }
     }
